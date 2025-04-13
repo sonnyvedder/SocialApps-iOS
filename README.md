@@ -5,19 +5,19 @@ A modern social media application built with SwiftUI.
 ## Screenshots
 
 ### Authentication
-![Login Screen](preview/social-app/login.png)
-![Sign Up Screen](preview/social-app/signup.png)
+![Login Screen](Screenshots/Auth/login.png)
+![Sign Up Screen](Screenshots/Auth/signup.png)
 
 ### Main Features
-![Home Feed](preview/social-app/feed.png)
-![Explore Page](preview/social-app/explore.png)
-![Create Post](preview/social-app/create-post.png)
-![Activity/Notifications](preview/social-app/notifications.png)
+![Home Feed](Screenshots/Main/feed.png)
+![Explore Page](Screenshots/Main/explore.png)
+![Create Post](Screenshots/Main/create-post.png)
+![Activity/Notifications](Screenshots/Main/notifications.png)
 
 ### Profile & Settings
-![User Profile](preview/social-app/profile.png)
-![Edit Profile](preview/social-app/edit-profile.png)
-![Settings](preview/social-app/settings.png)
+![User Profile](Screenshots/Profile/profile.png)
+![Edit Profile](Screenshots/Profile/edit-profile.png)
+![Settings](Screenshots/Profile/settings.png)
 
 ## Features
 
