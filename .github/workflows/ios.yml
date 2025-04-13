@@ -1,0 +1,48 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Select Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Build
+      run: |
+        xcodebuild clean build -project SocialApp.xcodeproj -scheme SocialApp -destination "platform=iOS Simulator,name=iPhone 14 Pro"
+        
+    - name: Run tests
+      run: |
+        xcodebuild test -project SocialApp.xcodeproj -scheme SocialApp -destination "platform=iOS Simulator,name=iPhone 14 Pro"
+
+  deploy:
+    needs: build
+    runs-on: macos-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install fastlane
+      run: |
+        gem install bundler
+        bundle install
+        
+    - name: Deploy to TestFlight
+      env:
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      run: bundle exec fastlane beta
